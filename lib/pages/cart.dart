@@ -41,7 +41,7 @@ class CartPage extends StatelessWidget {
                   ),
                   InkWell(
                       onTap: () {
-                        //  startPayment;
+                        _showPaymentOptions(context);
                       },
                       child: ButtonWidget(content: "Pay and purchase")),
                 ],
@@ -52,4 +52,45 @@ class CartPage extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showPaymentOptions(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: Icon(Icons.credit_card),
+              title: Text('Credit Card'),
+              onTap: () {
+                // Handle credit card payment
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.payment),
+              title: Text('Debit Card'),
+              onTap: () {
+                // Handle debit card payment
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.account_balance),
+              title: Text('Bank Transfer'),
+              onTap: () {
+                // Handle bank transfer payment
+                Navigator.pop(context);
+              },
+            ),
+            // Add more payment options as needed
+          ],
+        ),
+      );
+    },
+  );
 }
